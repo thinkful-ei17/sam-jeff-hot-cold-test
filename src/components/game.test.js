@@ -4,10 +4,6 @@ import {shallow} from 'enzyme';
 import Game from './game';
 import './config';
 
-const mockMath = Object.create(global.Math);
-mockMath.random = () => 0.5;
-global.Math = mockMath;
-
 describe('<Game />', () => {
   it('Smoke Test', () => {
     shallow(<Game />);
@@ -24,6 +20,13 @@ describe('<Game />', () => {
     expect(wrapper.state('correctAnswer')).toBeLessThan(101);
     });
   
+    it('Should take in guess whne makeGuess is called', () => {
+      const wrapper = shallow(<Game />);
+      wrapper.instance().setState({correctAnswer: 40});
+      wrapper.instance().makeGuess('1');
+      wrapper.update();
+      expect(wrapper.state('feedback')).toEqual('You\'re Cold...');
+      });
   });
   
 
