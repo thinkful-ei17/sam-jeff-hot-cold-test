@@ -7,6 +7,6 @@ import './config';
 describe('<InfoSection />', () => {
   it('Smoke Test', () => {
     shallow(<InfoSection />);
-  }); 
+  });
 });
 

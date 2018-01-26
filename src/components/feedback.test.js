@@ -11,8 +11,20 @@ describe('<Feedback />', () => {
 
   it('should properly display props', () => {
     const feedback='Congratulations';
-    const wrapper=shallow(<Feedback feedback={feedback}/>);
-    expect(wrapper.contains(<h2>Congratulations</h2>));
+    const wrapper=shallow(<Feedback feedback={feedback} />);
+    expect(wrapper.text()).toContain('Congratulations');
+  });
+
+  it('should properly display props', () => {
+    const guessCount=1
+    const wrapper=shallow(<Feedback guessCount={guessCount} />);
+    expect(wrapper.containsMatchingElement(<span>Guess again!</span>)).toEqual(true);
+  });
+
+  it('should properly display props', () => {
+    const guessCount=0
+    const wrapper=shallow(<Feedback guessCount={guessCount} />);
+    expect(wrapper.containsMatchingElement(<span>Guess again!</span>)).toEqual(false);
   });
 
   it('should have included props', () => {
